@@ -3,9 +3,11 @@ Changes
 LICENSE
 MANIFEST
 MANIFEST.SKIP
+META.json
 META.yml
 README
 dist.ini
+lib/Lingua/Base/Nums2Words.pm
 lib/Lingua/ID/Nums2Words.pm
 t/00-compile.t
 t/basics.t

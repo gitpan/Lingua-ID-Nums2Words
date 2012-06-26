@@ -2,7 +2,7 @@ NAME
     Lingua::ID::Nums2Words - Convert number to Indonesian verbage
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
      use Lingua::ID::Nums2Words qw(nums2words nums2words_simple);
@@ -11,24 +11,9 @@ SYNOPSIS
      print nums2words_simple(123); # satu dua tiga
 
 DESCRIPTION
-    This module provides two functions, nums2words and <nums2words_simple>,
-    to convert number to Indonesian verbage. Popular Indonesian term for
-    this kind of library is "terbilang", or roughly "spelled amount" in
-    English.
-
-FUNCTIONS
-    None are exported by default, but they are exportable.
-
-  nums2words(NUM) => STR
-    Convert number to Indonesian verbage (like converting 123 to "a hundred
-    and twenty three" in English). Currently can handle real numbers in
-    normal and scientific form in the order of hundreds of trillions. It
-    also preserves formatting in the number string (e.g, given "1.00"
-    nums2words will pronounce the zeros).
-
-  nums2words_simple(NUM) => STR
-    Like nums2words, but only pronounce the digits (like converting 123 to
-    "one two three" in English).
+    This module provides two functions, nums2words and nums2words_simple, to
+    convert number to Indonesian verbage. Popular Indonesian term for this
+    kind of library is "terbilang", or roughly "spelled amount" in English.
 
 SEE ALSO
     Lingua::ID::Words2Nums
@@ -37,7 +22,7 @@ AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2011 by Steven Haryanto.
+    This software is copyright (c) 2012 by Steven Haryanto.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

@@ -1,8 +1,4 @@
 package Lingua::ID::Nums2Words;
-BEGIN {
-  $Lingua::ID::Nums2Words::VERSION = '0.02';
-}
-# ABSTRACT: Convert number to Indonesian verbage
 
 use 5.010;
 use strict;
@@ -11,6 +7,10 @@ use warnings;
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(nums2words nums2words_simple);
+
+our %SPEC;
+
+our $VERSION = '0.03'; # VERSION
 
 use vars qw(
     $Dec_char
@@ -49,7 +49,49 @@ $Zero_word = "nol";
     4 => 'triliun'
 );
 
+$SPEC{nums2words} = {
+    v => 1.1,
+    summary => 'Convert number to Indonesian verbage',
+    description => <<'_',
+
+This is akin to converting 123 to "a hundred and twenty three" in English.
+Currently can handle real numbers in normal and scientific form in the order of
+hundreds of trillions. It also preserves formatting in the number string (e.g,
+given "1.00" `nums2words` will pronounce the zeros.
+
+_
+    args => {
+        num => {
+            schema => 'str*',
+            summary => 'The number to convert',
+            req => 1,
+            pos => 0,
+        },
+    },
+    args_as => 'array',
+    result_naked => 1,
+};
 sub nums2words($) { _join_it(_handle_scinotation(@_)) }
+
+$SPEC{nums2words_simple} = {
+    v => 1.1,
+    summary => 'Like nums2words but only pronounce the digits',
+    description => <<'_',
+
+This is akin to converting 123 to "one two three" in English.
+
+_
+    args => {
+        num => {
+            schema => 'str*',
+            summary => 'The number to convert',
+            req => 1,
+            pos => 0,
+        },
+    },
+    args_as => 'array',
+    result_naked => 1,
+};
 sub nums2words_simple($) { _join_it(_handle_dec(@_)) }
 
 sub _handle_scinotation($) {
@@ -171,8 +213,10 @@ sub _join_it(@) {
 }
 
 1;
+# ABSTRACT: Convert number to Indonesian verbage
 
 
+__END__
 =pod
 
 =head1 NAME
@@ -181,7 +225,7 @@ Lingua::ID::Nums2Words - Convert number to Indonesian verbage
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -192,26 +236,9 @@ version 0.02
 
 =head1 DESCRIPTION
 
-This module provides two functions, B<nums2words> and <nums2words_simple>, to
+This module provides two functions, B<nums2words> and B<nums2words_simple>, to
 convert number to Indonesian verbage. Popular Indonesian term for this kind of
 library is "terbilang", or roughly "spelled amount" in English.
-
-=head1 FUNCTIONS
-
-None are exported by default, but they are exportable.
-
-=head2 nums2words(NUM) => STR
-
-Convert number to Indonesian verbage (like converting 123 to "a hundred and
-twenty three" in English). Currently can handle real numbers in normal and
-scientific form in the order of hundreds of trillions. It also preserves
-formatting in the number string (e.g, given "1.00" B<nums2words> will pronounce
-the zeros).
-
-=head2 nums2words_simple(NUM) => STR
-
-Like B<nums2words>, but only pronounce the digits (like converting 123 to "one
-two three" in English).
 
 =head1 SEE ALSO
 
@@ -223,13 +250,10 @@ Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Steven Haryanto.
+This software is copyright (c) 2012 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
 
